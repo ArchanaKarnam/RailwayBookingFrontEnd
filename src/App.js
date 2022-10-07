@@ -4,6 +4,7 @@ import { Router, Switch, Route,Routes, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import thankyoupage from "./components/thankyoupage.component.js";
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import booking from "./components/booking.component";
@@ -16,6 +17,8 @@ import { clearMessage } from "./actions/message";
 import { history } from './helpers/history';
 import EventBus from "./common/EventBus";
 import image from "./images/logo-modified.png"
+import cardpayment from "./components/cardpayment.component.js";
+import paytm from "./components/paytm.component.js"
 
 class App extends Component {
   constructor(props) {
@@ -139,6 +142,9 @@ class App extends Component {
               <Route exact path="/TrainList" component={TrainList} />
               <Route exact path="/user" component={User} />
               <Route exact path="/payment" component={payment}/>
+              <Route exact path="/thankyoupage" component={thankyoupage}/>
+              <Route exact path="/cardpayment" component={cardpayment}/>
+              <Route exact path="/paytm" component={paytm}/>
             </Switch>
           </div>
         </div>

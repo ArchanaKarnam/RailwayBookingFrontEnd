@@ -3,20 +3,21 @@ import React, { Component } from "react";
 import visalogo from "../resources/visalogo.png";
 import masterlogo from "../resources/masterlogo.png";
 import {SOURCE, DESTINATION, NOOFTICKETS } from "./booking.component";
-
-
+//import thankyoupage from "./thankyoupage.component";
+import authService from "../services/auth.service";
+import axios from "axios";
 export const TOTAL = "TOTAL";
 
 class payment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      method: "",
+      //method: "",
    
       source: "",
       destination: "",
       nooftickets: "",
-      total: ""
+      //total: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,34 +54,41 @@ class payment extends Component {
     let method = this.state.method;
 
     if (method === "creditcard") {
-      this.props.history.push(`/sbipg`);
+      this.props.history.push(`/cardpayment`);
     } else if (method === "mobile") {
-      this.props.history.push(`/submitPaymentDetail`);
+      this.props.history.push(`/paytm`);
     }
-    if(this.componentDidMount()){
-      fetch("http://localhost:8095/orders/addOrder", {
-        "method": "POST",
-        "headers": {
-          "content-type": "application/json",
-          "accept": "application/json",
-          "Access-Control-Allow-Origin": "*"
+
+    //authService.pay(this.state);
+     axios
+    .post("http://localhost:8095/api/auth/addOrder", this.state )
+    .then((response) => {
+      console.log(response);
+    });
+    // if(this.componentDidMount()){
+    //   fetch("http://localhost:8095/orders/addOrder", {
+    //     "method": "POST",
+    //     "headers": {
+    //       "content-type": "application/json",
+    //       "accept": "application/json",
+    //       "Access-Control-Allow-Origin": "*"
           
-        },
-        "body": JSON.stringify({
-          trainid: this.state.trainid,
-          source: this.state.source,
-          destination: this.state.destination,
-          nooftickets: this.state.nooftickets,
-        })
-      })
-      .then(response => response.json())
-      .then(response => {
-       alert("Your ticket is not booked")
-      })
-      .catch(err => {
-        alert("Your ticket is successfully booked")
-      });
-    }
+    //     },
+    //     "body": JSON.stringify({
+    //       trainid: this.state.trainid,
+    //       source: this.state.source,
+    //       destination: this.state.destination,
+    //       nooftickets: this.state.nooftickets,
+    //     })
+    //   })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //    alert("Your ticket is not booked")
+    //   })
+    //   .catch(err => {
+    //     alert("Your ticket is successfully booked")
+    //   });
+    // }
 
   }
   
@@ -93,7 +101,7 @@ class payment extends Component {
             <div className="card" style={{ width: 600 }}>
               <h5
                 className="card-header info-color white-text text-center py-4"
-                style={{ backgroundColor: " #45cbbe " }}
+                style={{ backgroundColor: " #77c3b6" }}
               >
                 <strong style={{ color: "white" }}>
                   {" "}
@@ -159,13 +167,13 @@ class payment extends Component {
                       value="creditcard"
                       onChange={this.handleChange}
                     />
-                    <label className="custom-control-label" for="creditcard">
-                      Credit Card
+                    <label className="custom-control-label" for="creditcard" >
+                      Debit Card
+                      </label>
                       <div>
                         <img src={visalogo} width="50" height="20" alt="" />
                         <img src={masterlogo} width="50" height="22" alt="" />
                       </div>
-                    </label>
                   </div>
                   <div className="custom-radio">
                     <input

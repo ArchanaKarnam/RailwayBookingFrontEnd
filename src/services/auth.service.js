@@ -13,6 +13,16 @@ class AuthService {
 
         return response.data;
       });
+      
+  }
+  
+  pay(paymentObj) {
+    return axios
+      .post(API_URL + "addOrder", { paymentObj })
+      .then((response) => {
+        console.log(response);
+      });
+      
   }
 
   logout() {

@@ -108,7 +108,7 @@ class Profile extends Component {
               <div className="card" style={{ width: 600 }}>
                 <h5
                   className="card-header info-color white-text text-center py-4"
-                  style={{ backgroundColor:  "#45cbbe" }}
+                  style={{ backgroundColor:  "#77c3b6" }}
                 >
                   <strong style={{ color: "black" }}>
                     {" "}
@@ -151,7 +151,7 @@ class Profile extends Component {
                       <option value="Vizag"> Vizag </option>
                       <option value="Hubli"> Hubli </option>
                       <option value="Chennai"> Chennai </option>
-                      <option value="Turupati"> Tirupati </option>
+                      <option value="Tirupati"> Tirupati </option>
                       <option value="Guntur"> Guntur </option>
                     </select>
 
